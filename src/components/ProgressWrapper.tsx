@@ -7,9 +7,9 @@ const ProgressWrapper = (props: ProgressWrapperProps) => (
     </div>
 )
 
-const getProgressWrapperStyle = ({ width, pause, bufferAction }) => ({
+const getProgressWrapperStyle = ({ width, pause, bufferAction, isStatic }) => ({
     width: `${width * 100}%`,
-    opacity: pause && !bufferAction ? 0 : 1
+    opacity: pause && !bufferAction && !isStatic ? 0 : 1
 })
 
 const styles = {

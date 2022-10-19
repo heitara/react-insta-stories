@@ -15,7 +15,7 @@ export default function () {
     let mousedownId = useRef<any>();
     let isMounted = useRef<boolean>(true);
 
-    const { width, height, loop, currentIndex, isPaused, keyboardNavigation, preventDefault, storyContainerStyles = {} } = useContext<GlobalCtx>(GlobalContext);
+    const { width, height, loop, currentIndex, isStatic, isPaused, keyboardNavigation, preventDefault, storyContainerStyles = {} } = useContext<GlobalCtx>(GlobalContext);
     const { stories } = useContext<StoriesContextInterface>(StoriesContext);
 
     useEffect(() => {
@@ -61,12 +61,19 @@ export default function () {
     }
 
     const toggleState = (action: string, bufferAction?: boolean) => {
-        setPause(action === 'pause')
-        setBufferAction(!!bufferAction)
+        if(isStatic) {
+            setBufferAction(!!bufferAction);
+            return;
+        }
+        setPause(action === 'pause');
+        setBufferAction(!!bufferAction);
     }
 
     const setCurrentIdWrapper = (callback) => {
         setCurrentId(callback);
+        if(isStatic) {
+            return;
+        }
         toggleState('pause', true);
     }
 
@@ -123,7 +130,8 @@ export default function () {
                 videoDuration: videoDuration,
                 currentId,
                 pause,
-                next
+                next,
+                isStatic
             }}>
                 <ProgressArray />
             </ProgressContext.Provider>

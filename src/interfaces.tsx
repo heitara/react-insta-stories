@@ -21,6 +21,7 @@ export interface ReactInstaStoriesProps {
     onStoryEnd?: Function;
     keyboardNavigation?: boolean;
     preventDefault?: boolean;
+    isStatic?: boolean;
 }
 
 export interface GlobalCtx {
@@ -43,6 +44,7 @@ export interface GlobalCtx {
     onStoryEnd?: Function;
     keyboardNavigation?: boolean;
     preventDefault?: boolean;
+    isStatic?: boolean;
 }
 
 type NumberOrString = number | string;
@@ -133,7 +135,8 @@ export interface ProgressWrapperProps {
     children: any;
     width: number;
     pause: boolean;
-    bufferAction: boolean
+    bufferAction: boolean;
+    isStatic: boolean;
 }
 
 export interface ProgressArrayProps {
@@ -145,5 +148,6 @@ export interface ProgressContext {
     videoDuration: number;
     bufferAction: boolean;
     pause: boolean;
+    isStatic: boolean;
     next: Function
 }

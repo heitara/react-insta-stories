@@ -4,7 +4,7 @@ import ProgressWrapper from './ProgressWrapper'
 import ProgressCtx from './../context/Progress'
 
 export default (props: ProgressProps) => {
-    const { bufferAction, pause } = useContext<ProgressContext>(ProgressCtx)
+    const { bufferAction, pause, isStatic } = useContext<ProgressContext>(ProgressCtx)
 
     const getProgressStyle = ({ active }) => {
         switch (active) {
@@ -21,7 +21,7 @@ export default (props: ProgressProps) => {
 
     const { width, active } = props
     return (
-        <ProgressWrapper width={width} pause={pause} bufferAction={bufferAction}>
+        <ProgressWrapper width={width} pause={pause} bufferAction={bufferAction} isStatic={isStatic}>
             <div
                 style={{ ...getProgressStyle({ active }), ...styles.inner }} />
         </ProgressWrapper>
